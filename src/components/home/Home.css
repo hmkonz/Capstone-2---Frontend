@@ -1,0 +1,31 @@
+.homepage-container {
+   /* margin-left: 20px; */
+   margin-top: 20px;
+}
+
+.homepage-title {
+    color: black;
+    background-color: lightgreen;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+    width: 1085px;
+    padding: 20px;
+}
+
+.welcome-back-msg {
+  margin-left: 535px;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  color: black;
+}
+
+
+
+
+
+
+
+
+  

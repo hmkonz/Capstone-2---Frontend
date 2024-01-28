@@ -1,0 +1,38 @@
+.productDetail-image2 {
+    margin-right: 25px;
+    margin-left: 185px;
+    margin-right: 120px;
+}
+
+.product-images {
+    list-style: none;
+    display: flex;
+    /* gap: 100px; */
+    height: 400px;
+    width: 400px;
+    margin-top: 25px;
+}
+.productDetail-name {
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 50px;
+}
+
+.productDetail-price {
+    font-size: 20px;
+    margin-top: -35px;
+    margin-left: 645px;
+    margin-bottom: -20px;
+}
+
+.productDetail-button {
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+    margin-left: 900px;
+    text-decoration: none;
+}
+
+ 

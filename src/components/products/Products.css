@@ -1,0 +1,22 @@
+
+.productList {
+  margin-top: 3%;
+  width: 100%;
+  height: 400px;
+}
+
+.product-image {
+  float: left;
+  width: 33%;
+  height: auto;
+} 
+
+.productList-list {
+  border-top: 4px solid grey;
+  border-bottom: 4px solid grey;
+} 
+
+.products-link {
+  text-decoration: none;
+}
+

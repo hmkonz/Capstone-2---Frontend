@@ -1,0 +1,90 @@
+
+/* adds spacing inbetween input fields */
+.Forms form div {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.register-label {
+    color: black;
+    font-weight: 400;
+}
+
+.register-btn {
+    margin-left: 125px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
+.login-btn {
+    margin-left: 125px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: black;
+    color: white; 
+}
+
+.register-header {
+    color: black;
+    margin-left: 300px; 
+    margin-bottom: 15px;
+    font-size: 35px;
+    font-weight: lighter;
+}
+
+.login-header {
+    color: black;
+    margin-left: 200px;
+    margin-bottom: 15px;
+    font-size: 35px;
+    font-weight: lighter;
+}
+
+#register-email {
+    margin-left: 115px;
+    margin-top: -25px;
+}
+
+#register-password {
+    margin-left: 115px; 
+    margin-top: -25px;  
+}
+
+#login-email {
+    margin-left: 115px;
+    margin-top: -25px; 
+}
+
+#login-password {
+    margin-left: 115px;
+    margin-top: -25px; 
+}
+
+.login-label { 
+    color: black;
+    font-weight: 400;
+}
+
+
+/* div wrapped around register form  - displaying form on the left of the page*/
+.register {
+    float: left;
+    width: 50%;
+}
+
+/* div wrapped around login form - displaying form on the right of the page*/
+.login {
+    float: right;
+    width: 50%;
+    /* margin-right: 20px; */
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    width: max-content;
+}
+

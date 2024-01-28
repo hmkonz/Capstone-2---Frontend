@@ -1,0 +1,306 @@
+.myAccount-orders-container {
+  position: relative;
+  text-align: center;
+  color: black;
+  font-size: 15px;
+  margin-left: -50px;
+  margin-top: -20px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 700px;
+  height: 500px;
+  background-color: white;
+  margin-left: 150px;
+  margin-top: 50px;
+  padding-top: 10px; 
+  padding-bottom: 50px;
+  text-decoration: none;
+  color: black;
+}
+
+.myAccount-orders-title {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  background-color: lightgreen;
+  width: 1300px;
+  text-align: center;
+  padding: 20px;
+
+}
+
+.myAccount-orders-image {
+  width: 1400px;
+}
+
+#myAccount-orders-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 50px;
+}
+  
+#myAccount-orders-table td, #myAccount-orders-table th {
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+  
+#myAccount-orders-table .myAccount-orders-product:nth-child(even){
+  background-color: #f2f2f2;
+}
+  
+#myAccount-orders-table tr:hover {background-color: #ddd;}
+  
+#myAccount-orders-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.myAccount-orders-dashboard-links {
+  margin-left: 500px;
+  margin-top: -300px;
+}
+
+.myAccount-orders-id {
+  font-style: italic;
+  font-weight: 400;
+  margin-left: -570px;
+  margin-top: 50px;
+}
+
+.myAccount-orders-customerId {
+  font-style: italic;
+  font-weight: 400;
+  margin-left: -545px;
+  margin-top: -20px;
+}
+
+.myAccount-orders-date {
+  font-style: italic;
+  font-weight: 400;
+  margin-left: 500px;
+  margin-top: -50px;
+}
+
+.myAccount-order-details-title {
+  margin-bottom: -20px;
+}
+
+.myAccount-orders-dashboard-links {
+  margin-left: 800px;
+  margin-top: -525px;
+  font-size: 15px;
+}
+
+.myAccount-orders-link-acct {
+  padding-right: 250px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  border-top: solid 1px rgba(0, 0, 0, .2); 
+  border-bottom: solid 1px rgba(0, 0, 0, .2);
+  color: black;
+}
+
+.myAccount-orders-link-acct::before {
+  content: "\2192";
+  padding-right: 15px;
+  color: rgba(0, 0, 0, .3)
+}
+
+/* adds line under the link that's active */
+.myAccount-orders-link-acct.active {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  padding-bottom: 4px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.myAccount-orders-link-acct:hover {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+} 
+
+.myAccount-orders-link-orders {
+  padding-right: 275px;
+  border-bottom: solid 1px rgba(0, 0, 0, .2);
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.myAccount-orders-link-orders::before {
+  content: "\2192";
+  padding-right: 15px;
+  color: rgba(0, 0, 0, .3)
+}
+
+/* adds line under the link that's active */
+.myAccount-orders-link-orders.active {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  padding-bottom: 2px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.myAccount-orders-link-orders:hover {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+} 
+
+.myAccount-orders-link-addresses {
+  padding-right: 255px;
+  border-bottom: solid 1px rgba(0, 0, 0, .2);
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.myAccount-orders-link-addresses::before {
+  content: "\2192";
+  padding-right: 15px;
+  color: rgba(0, 0, 0, .3)
+}
+
+/* adds line under the link that's active */
+.myAccount-orders-link-addresses.active {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  padding-bottom: 2px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.myAccount-orders-link-addresses:hover {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+} 
+
+.myAccount-orders-link-payments { 
+  padding-right: 200px;
+  border-bottom: solid 1px rgba(0, 0, 0, .2);
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.myAccount-orders-link-payments::before {
+  content: "\2192";
+  padding-right: 15px;
+  color: rgba(0, 0, 0, .3)
+}
+
+/* adds line under the link that's active */
+.myAccount-orders-link-payments.active {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  padding-bottom: 4px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.myAccount-orders-link-payments:hover {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+} 
+
+.myAccount-orders-link-details {
+  padding-right: 225px;
+  border-bottom: solid 1px rgba(0, 0, 0, .2);
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.myAccount-orders-link-details::before {
+  content: "\2192";
+  padding-right: 15px;
+  color: rgba(0, 0, 0, .3)
+}
+
+/* adds line under the link that's active */
+.myAccount-orders-link-details.active {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  padding-bottom: 2px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.myAccount-orders-link-details:hover {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+} 
+
+.myAccount-orders-link-logout{
+  padding-right: 270px;
+  border-bottom: solid 1px rgba(0, 0, 0, .2);
+  padding-top: 20px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.myAccount-orders-link-logout::before {
+  content: "\2192";
+  padding-right: 15px;
+  color: rgba(0, 0, 0, .3)
+}
+
+/* adds line under the link that's active */
+.myAccount-orders-link-logout.active {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  padding-bottom: 2px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.myAccount-orders-link-logout:hover {
+  color:  black;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+} 
+
+/* styles the message that appears when no orders have been made yet */
+.myAccount-orders-message2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  margin-left: 500px;
+  margin-top: 100px;
+}
+
+/* styles the Browse Products link on the page when no orders have been made yet */
+.myAccount-orders-browse-link {
+  margin-left: 560px;
+  text-decoration: underline;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+
+
+
+
+
+
+ 

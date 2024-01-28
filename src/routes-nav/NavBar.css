@@ -1,0 +1,47 @@
+/* spreads links horizontally across the navbar */
+/* .navBar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  margin-left: 50px;
+} */
+
+/* spaces out links horizontally in navbar */
+.navbar-nav {
+ list-style: none;
+ padding: 10px;
+ display: flex;
+ gap: 200px;
+ margin-left: 55px;
+}
+
+/* styles links */
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-weight: light;
+}
+
+/* adds line under the link that's active */
+.nav-link.active {
+  color:  black;
+  border-bottom: 2px solid black;
+  padding-bottom: 4px;
+}  
+ 
+/* adds line under the link that's hovered over */
+.nav-link:hover {
+  color:  black;
+  border-bottom: 2px solid black;
+} 
+
+
+
+
+
+ 
+  
+
+
+   
