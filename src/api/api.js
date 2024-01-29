@@ -75,10 +75,10 @@ class JustRealFoodApi {
   }
 
   /** Get all carts   */
-  static async getAllCarts() {
-    let res = await this.request(`api/cart`);
-    return res.cart;
-  }
+  // static async getAllCarts() {
+  //   let res = await this.request(`api/cart`);
+  //   return res.cart;
+  // }
 
   /** Update cart details */
 

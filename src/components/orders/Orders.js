@@ -9,7 +9,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
  *
  * On mount, loads orders from API.
  *
- * This is routed to at /api/account/orders/:customerId
+ * This is routed to at /api/account/orders
  *
  * Orders renders -> {OrderCard }
  */
@@ -17,14 +17,15 @@ import LoadingSpinner from "../common/LoadingSpinner";
 function Orders() {
   // initialize piece of state 'orders' to an empty array
   const [orders, setOrders] = useState([]);
-  // deconstruct 'id' from the url params
-  // const { id } = useParams();
 
   /** the listUserOrders function is executed once when component is rendered **/
   const listUserOrders = useCallback(async () => {
-    // retrieve orders of
+    // retrieve orders of user
     let orders = await JustRealFoodApi.getUserOrders();
-    console.log("This is orders in Orders/listUserOrders", orders);
+    console.log(
+      "This is piece of state orders in Orders/listUserOrders",
+      orders
+    );
 
     // update piece of state 'orders' with the results of the API call
     setOrders(orders);
@@ -39,76 +40,12 @@ function Orders() {
     return <LoadingSpinner />;
   }
 
-  // let subtotal = orders.reduce(function (prev, current) {
-  //   return prev + +current.price;
-  // }, 0);
-
-  // const Rows = (props) => {
-  //   const { productname, quantity, price } = props;
-  //   return (
-  //     <tr className="myAccount-orders-product">
-  //       <td>{productname}</td>
-  //       <td>{quantity}</td>
-  //       <td>{price}</td>
-  //     </tr>
-  //   );
-  // };
-
-  // const Table = (props) => {
-  //   const { data } = props;
-  //   return (
-  //     <table>
-  //       <tbody>
-  //         <tr>
-  //           <th>Product</th>
-  //           <th>Quantity</th>
-  //           <th>Price</th>
-  //         </tr>
-  //         {data.map((row) => (
-  //           <Rows
-  //             key={row.id}
-  //             productname={row.productname}
-  //             quantity={row.quantity}
-  //             price={row.price}
-  //           />
-  //         ))}
-
-  //         <tr></tr>
-  //         <tr></tr>
-  //         <tr>
-  //           <td>Subtotal:</td>
-  //           <td></td>
-  //           <td>${subtotal}</td>
-  //         </tr>
-  //         <tr>
-  //           <td>Shipping:</td>
-  //           <td></td>
-  //           <td>Free Shipping</td>
-  //         </tr>
-  //         <tr>
-  //           <td>Tax:</td>
-  //           <td></td>
-  //           <td>${(subtotal * 0.08).toFixed(2)}</td>
-  //         </tr>
-  //         <tr>
-  //           <td>Payment Method:</td>
-  //           <td></td>
-  //           <td>{data.paymentMethod}</td>
-  //         </tr>
-  //         <tr>
-  //           <td>Total:</td>
-  //           <td></td>
-  //           <td>${(subtotal * 1.08).toFixed(2)}</td>
-  //         </tr>
-  //       </tbody>
-  //     </table>
-  //   );
-  // };
+  console.log("THis is piece of state orders in Orders.js", orders);
 
   return (
     <div className="OrderList col-md-8 offset-md-2">
       {orders.length ? (
-        <OrderCard orders={orders} />
+        <OrderCard />
       ) : (
         <div className="myAccount-orders-message">
           <p className="myAccount-orders-message2">
