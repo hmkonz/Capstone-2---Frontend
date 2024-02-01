@@ -12,8 +12,10 @@
     color: black;
   }
 
-.account-details-to-form-link {
+.account-details-edit-link {
     background-color: black;
-    padding: 10px;
-    color: white;
+    padding: 5px;
+    font-size: 15px;
+    color: lightgreen;
+    text-decoration: none;
 }

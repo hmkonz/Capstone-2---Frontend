@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import JustRealFoodApi from "../../api/api";
 import "./ProductDetail.css";
-import CartCard from "../carts/CartCard";
-import LoadingSpinner from "../common/LoadingSpinner";
 import UserContext from "../../auth/UserContext";
-import { v4 as uuid } from "uuid";
-// import { UnauthorizedError } from "../../../../backend/expressError";
 
-/** Show page with details of a specific product */
+/** Show page with details of a specific product and items can be added to users cart */
 
 function ProductDetail() {
   // retrieve the parameter (name) from the URL
@@ -18,6 +14,9 @@ function ProductDetail() {
   // deconstruct 'currentUser' from context value of UserContext declared in App component
   const { currentUser } = useContext(UserContext);
   console.log("This is currentUser in ProductDetail.js", currentUser);
+
+  // initialize piece of state "cart" to an empty array
+  const [cart, setCart] = useState([]);
 
   // initialize piece of state "addToCartConfirmed" to false
   const [addToCartConfirmed, setAddToCartConfirmed] = useState(false);
@@ -30,21 +29,19 @@ function ProductDetail() {
     id: "",
     name: "",
     ingredients: "",
-    calorieCount: " ",
+    calorie_count: " ",
     category: " ",
     price: " ",
   });
 
   const [cartData, setCartData] = useState({
-    cartId: "",
-    productName: "",
-    productQuantity: "",
-    productPrice: "",
-    userId: "",
-    productId: "",
+    product_name: "",
+    product_price: "",
+    user_id: "",
+    product_id: "",
   });
 
-  // useEffect will make an API call everytime product name changes in the params. Reloads the details of the product (with 'name'=product.name)
+  // useEffect will make an API call everytime product name or currentUser.id changes in the params. Reloads the details of the product (with 'name'=product.name)
 
   useEffect(() => {
     async function getProduct() {
@@ -57,12 +54,10 @@ function ProductDetail() {
         setProduct(productResult);
 
         let newCartData = {
-          cartId: uuid(),
-          productName: productResult.name,
-          productQuantity: "2",
-          productPrice: productResult.price.toString(),
-          userId: currentUser.id,
-          productId: productResult.id.toString(),
+          product_name: productResult.name,
+          product_price: productResult.price.toString(),
+          user_id: currentUser.id,
+          product_id: productResult.id.toString(),
         };
 
         setCartData(newCartData);
@@ -76,49 +71,59 @@ function ProductDetail() {
   console.log("THis is product in ProductDetail/getProductDetail", product);
   console.log("THis is piece of state cartData in ProductDetail", cartData);
 
-  // while specific company details are being retrieved from the API, show the laoding spinner
-  if (!product) return <LoadingSpinner />;
+  // define counter and set it equal to zero
+  let counter = 0;
 
   // function is called when click on "Add to Cart" button and addToCartConfirmed is toggled to 'true'
   const addItemToCart = async () => {
     try {
-      let result = await JustRealFoodApi.createCart({
-        cartId: cartData.cartId,
-        productName: cartData.productName,
-        productQuantity: cartData.productQuantity,
-        productPrice: cartData.productPrice,
-        userId: currentUser.id,
-        productId: cartData.productId,
+      let result = await JustRealFoodApi.addItemToCart({
+        product_name: cartData.product_name,
+        product_price: cartData.product_price,
+        user_id: currentUser.id,
+        product_id: cartData.product_id,
       });
-
+      setCart(result);
       setAddToCartConfirmed(true);
       setShowButton(false);
+      counter = counter++;
+
       console.log("THis is result in ProductDetail/addItemToCart", result);
+      console.log("THis is counter in ProductDetail/addItemToCart", counter);
     } catch (errors) {
       console.error("Add item to cart failed", errors);
     }
   };
+
+  console.log("THis is piece of state cart in ProductDetail", cart);
+
   return (
     <div className="productDetail-container">
       {addToCartConfirmed ? (
-        <CartCard />
+        <div className="productDetail-msg">
+          <p className="addToCart-msg">Item added to cart!</p>
+          <Link className="shopping-link" exact to="/api/products">
+            Continue Shopping
+          </Link>
+        </div>
       ) : (
         <div>
-          <button className="productDetail-button" onClick={addItemToCart}>
-            Add to Cart
-          </button>
-          <h1 className="productDetail-name">{product.name} Details</h1>
-          <h5 className="productDetail-price">${product.price}</h5>
-
+          <div className="productDetail-div">
+            <h1 className="productDetail-name">{product.name} Details</h1>
+            <h5 className="productDetail-price">${product.price}</h5>
+            <button className="productDetail-button" onClick={addItemToCart}>
+              Add to Cart
+            </button>
+          </div>
           <div className="product-images">
             <img
               className="productDetail-image2"
-              src={product.imageUrl2}
+              src={product.image_url2}
               alt=""
             ></img>
             <img
               className="productDetail-image3"
-              src={product.imageUrl3}
+              src={product.image_url3}
               alt=""
             ></img>
           </div>

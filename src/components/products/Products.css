@@ -1,22 +1,44 @@
-
-.productList {
-  margin-top: 3%;
+/* .productList {
+  margin-top: 150px;
   width: 100%;
-  height: 400px;
+ height: 400px;  
+} */
+
+.products {
+  margin-left: 100px;
+  margin-right: -200px;
+  margin-top: 50px;
+  width: 1200px;
 }
 
 .product-image {
   float: left;
-  width: 33%;
+  width: 33.33%;
   height: auto;
-} 
-
-.productList-list {
-  border-top: 4px solid grey;
-  border-bottom: 4px solid grey;
-} 
+}
 
 .products-link {
   text-decoration: none;
+  color: black;
 }
+
+.ProductDogOrCatFood-title{
+  margin-left: 535px;
+  margin-top: 75px;
+  background-color: black;
+  color: lightgreen;
+  text-align: center;
+  width: 300px;
+}
+
+.productList-title {
+  background-color: black;
+  color: lightgreen;
+  text-align: center;
+  width: 450px;
+  margin-left: 500px;
+  margin-top: 75px;
+}
+ 
+
 

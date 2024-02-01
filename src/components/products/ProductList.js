@@ -35,6 +35,7 @@ function ProductList() {
 
   return (
     <div className="productList col-md-8 offset-md-2">
+      <h1 className="productList-title"> All Dog and Cat Recipes</h1>
       {products.length ? (
         <div className="productList-list">
           {/* map over piece of state 'products' and for every product, render the ProductCard component with key, name, ingredients, calorieCount, category, price, imageUrl passed in as props  */}
@@ -42,7 +43,7 @@ function ProductList() {
             <Products
               key={product.id}
               name={product.name}
-              imageUrl1={product.imageUrl1}
+              imageUrl1={product.image_url1}
             />
           ))}
         </div>

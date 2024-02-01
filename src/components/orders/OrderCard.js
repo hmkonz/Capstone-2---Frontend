@@ -2,30 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./OrderCard.css";
 
-function OrderCard({ orders }) {
-  const { id, date, productName, quantity, price, paymentMethod, userId } =
+function OrderCard(orders) {
+  const { id, date, product_name, quantity, price, payment_method, user_id } =
     orders;
 
-  console.log(
-    "This is deconstructed orders in OrderCard",
-    id,
-    date,
-    productName,
-    quantity,
-    price,
-    paymentMethod,
-    userId
-  );
+  console.log("This is orders in OrderCard", orders);
 
   let subtotal = orders.reduce(function (prev, current) {
     return prev + +current.price;
   }, 0);
 
   const Rows = (props) => {
-    const { productname, quantity, price } = props;
+    const { product_name, quantity, price } = props;
     return (
       <tr className="myAccount-orders-product">
-        <td>{productname}</td>
+        <td>{product_name}</td>
         <td>{quantity}</td>
         <td>{price}</td>
       </tr>
@@ -35,7 +26,7 @@ function OrderCard({ orders }) {
   const Table = (props) => {
     const { data } = props;
     return (
-      <table>
+      <table id="myAccount-orders-table">
         <tbody>
           <tr>
             <th>Product</th>
@@ -71,7 +62,7 @@ function OrderCard({ orders }) {
           <tr>
             <td>Payment Method:</td>
             <td></td>
-            <td>{paymentMethod}</td>
+            <td>{payment_method}</td>
           </tr>
           <tr>
             <td>Total:</td>
@@ -95,7 +86,9 @@ function OrderCard({ orders }) {
         <div className="card">
           <h1 className="myAccount-order-details-title">Order Details</h1>
           <h5 className="myAccount-orders-id">Order Number: {id}</h5>
-          <h5 className="myAccount-orders-customerId">Customer Id: {userId}</h5>
+          <h5 className="myAccount-orders-customerId">
+            Customer Id: {user_id}
+          </h5>
           <h5 className="myAccount-orders-date">Order date: {date}</h5>
           <Table data={orders} />
           <br></br>

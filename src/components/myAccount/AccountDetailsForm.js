@@ -311,7 +311,7 @@ function AccountDetailsForm() {
             <li>
               <Link
                 className="account-details-form-link-orders"
-                to={`/api/account/orders/${currentUser.customerId}`}
+                to={`/api/orders/${currentUser.id}`}
               >
                 Orders
               </Link>

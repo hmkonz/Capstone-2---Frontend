@@ -13,12 +13,15 @@ import LoadingSpinner from "../common/LoadingSpinner";
  * ProductDogOrCatFood renders -> <Products />
  */
 
-function ProductDogOrCatFood() {
+function ProductDogOrCatFood(props) {
   // initialize piece of state 'products' to an empty array
   const [products, setProducts] = useState([]);
   // destructure 'category' from the params value
   const { category } = useParams();
-
+  console.log(
+    "THis is category in ProductDogOrCatFood/listDogOrCatFoods",
+    category
+  );
   /** the listDogOrCatFoods function is executed once when component is rendered **/
   const listDogOrCatFoods = useCallback(async () => {
     // retrieve products with category=products.DogFood or category=products.CatFoodfrom API
@@ -27,11 +30,6 @@ function ProductDogOrCatFood() {
     // update piece of state 'products' with the results of the API call
     setProducts(products);
   }, [category]);
-
-  console.log(
-    "THis is products in ProductDogOrCatFood/listDogOrCatFoods",
-    products
-  );
 
   // useEffect will make an API call only once when component is rendered and retrieves all products from the database
   useEffect(() => {
@@ -45,6 +43,7 @@ function ProductDogOrCatFood() {
 
   return (
     <div className="ProductList col-md-8 offset-md-2">
+      <h1 className="ProductDogOrCatFood-title">{category} Recipes</h1>
       {products.length ? (
         <div className="ProductDogOrCatFood-list">
           {/* map over piece of state 'products' and for every product, render the Products component with key, name and imageUrl passed in as props  */}
@@ -52,8 +51,7 @@ function ProductDogOrCatFood() {
             <Products
               key={product.id}
               name={product.name}
-              price={product.price}
-              imageUrl1={product.imageUrl1}
+              imageUrl1={product.image_url1}
             />
           ))}
         </div>

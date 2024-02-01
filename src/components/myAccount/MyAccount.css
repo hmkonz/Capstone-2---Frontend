@@ -14,11 +14,11 @@
 .myAccount-title {
     position: absolute;
     top: 10%;
-    left: 52%;
+    left: 58%;
     transform: translate(-50%, -50%);
     margin-top: -40px;
     background-color: lightgreen;
-    width: 1300px;
+    width: 1320px;
     text-align: center;
     padding: 20px;
   }
@@ -26,14 +26,14 @@
 .myAccount-welcome-msg {
   font-size: 15px;
   font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin-left: -500px;
+  margin-left: -400px;
   margin-top: 100px;
   color: black;
 }
 
 /* positions dashboard links to the right of the page */
 .myAccount-dashboard-links {
-  margin-left: 900px;
+  margin-left: 800px;
   margin-top: -250px;
   font-size: 15px;
 }

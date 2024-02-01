@@ -35,7 +35,10 @@ function MyAccount() {
           </li>
           <br></br>
           <li>
-            <Link className="myAccount-link-orders" to={`/api/account/orders`}>
+            <Link
+              className="myAccount-link-orders"
+              to={`/api/orders/${currentUser.id}`}
+            >
               Orders
             </Link>
           </li>
@@ -76,6 +79,8 @@ function MyAccount() {
             </Link>
           </li>
         </ul>
+        <br></br>
+        <br></br>
       </div>
     </div>
   );

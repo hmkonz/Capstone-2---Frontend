@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
 import JustRealFoodApi from "../../api/api";
 import OrderCard from "./OrderCard";
 import "./OrderCard.css";
+import UserContext from "../../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 /** Show page with list of orders for a specific user
@@ -18,18 +19,19 @@ function Orders() {
   // initialize piece of state 'orders' to an empty array
   const [orders, setOrders] = useState([]);
 
+  // deconstruct 'currentUser' from context value of UserContext declared in App component
+  const { currentUser } = useContext(UserContext);
+  console.log("THis is currentUser in Orders.js", currentUser);
+
   /** the listUserOrders function is executed once when component is rendered **/
   const listUserOrders = useCallback(async () => {
     // retrieve orders of user
-    let orders = await JustRealFoodApi.getUserOrders();
-    console.log(
-      "This is piece of state orders in Orders/listUserOrders",
-      orders
-    );
+    let userOrders = await JustRealFoodApi.getUserOrders(currentUser.id);
+    console.log("This is userOrders in Orders/listUserOrders", userOrders);
 
     // update piece of state 'orders' with the results of the API call
     setOrders(orders);
-  }, []);
+  }, [orders, currentUser.id]);
 
   useEffect(() => {
     listUserOrders();
@@ -45,14 +47,14 @@ function Orders() {
   return (
     <div className="OrderList col-md-8 offset-md-2">
       {orders.length ? (
-        <OrderCard />
+        <OrderCard orders={orders} />
       ) : (
         <div className="myAccount-orders-message">
           <p className="myAccount-orders-message2">
-            No orders have been made yet.
+            No orders have been made yet
           </p>
-          <Link className="myAccount-orders-browse-link" to="/api/products">
-            Browse Products
+          <Link className="myAccount-orders-browse-link" to="/api/account">
+            Return to My Account
           </Link>
         </div>
       )}

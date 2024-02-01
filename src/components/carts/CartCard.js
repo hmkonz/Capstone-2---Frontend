@@ -3,33 +3,54 @@ import { Link } from "react-router-dom";
 import UserContext from "../../auth/UserContext";
 import "./CartCard.css";
 
-function CartCard({ cartData }) {
-  //   cartId,
-  //   productId,
-  //   productName,
-  //   productQuantity,
-  //   productPrice,
-  //   userId,
-  // }) {
-
-  // deconstruct 'cardId', 'productId', 'productName', 'productQuantity' and 'userId' from piece of state 'cartData' in ProductDetail file
-  const { cartId, productName, productQuantity, productPrice, userId } =
-    cartData;
+function CartCard(carts) {
+  // deconstruct id, product_name, product_price, user_id and product_id from piece of state 'carts' in Carts.js file
+  const { id, product_name, product_price, user_id, product_id } = carts;
+  console.log("This is carts in CartCard", carts);
 
   // deconstruct 'currentUser' from context value of UserContext declared in App component
   const { currentUser } = useContext(UserContext);
+  console.log("THis is currentUser in Orders.js", currentUser);
 
-  let subtotal = cartData.reduce(function (prev, current) {
-    return prev + +current.productPrice;
+  let subtotal = carts.reduce(function (prev, current) {
+    return prev + +current.price;
   }, 0);
 
+  // // deconstruct 'currentUser' from context value of UserContext declared in App component
+  // const { currentUser } = useContext(UserContext);
+
+  // // initialize piece of state 'cartItems' to an empty array
+  // const [cartItems, setCartItems] = useState([]);
+
+  // useEffect(() => {
+  //   async function getCarts() {
+  //     let results = await JustRealFoodApi.getUserCart(user_id);
+  //     return results;
+  //   }
+
+  //   getCarts()
+  //     .then((cartsResult) => {
+  //       setCartItems(cartsResult);
+  //     })
+  //     .catch((err) => {
+  //       console.error(`Error in CartCard/getCarts: ${err}`);
+  //     });
+  // }, [user_id]);
+
+  // // while cartItems are being retrieved from the API, show the laoding spinner
+  // if (!cartItems) {
+  //   return <LoadingSpinner />;
+  // }
+
+  // console.log("THis is piece of state cartItems in CartCard.js", cartItems);
+
   const Rows = (props) => {
-    const { productname, productquantity, productprice } = props;
+    const { product_name, product_price } = props;
     return (
       <tr className="CartCard-Rows">
-        <td>{productName}</td>
-        <td>{productQuantity}</td>
-        <td>{productPrice}</td>
+        <td>{product_name}</td>
+        <td>1</td>
+        <td>{product_price}</td>
       </tr>
     );
   };
@@ -37,7 +58,7 @@ function CartCard({ cartData }) {
   const Table = (props) => {
     const { data } = props;
     return (
-      <table>
+      <table id="CartCard-table">
         <tbody>
           <tr>
             <th>Product</th>
@@ -47,9 +68,9 @@ function CartCard({ cartData }) {
           {data.map((row) => (
             <Rows
               key={row.id}
-              productname={row.productname}
-              quantity={row.productquantity}
-              price={row.productprice}
+              productname={row.product_name}
+              quantity={1}
+              price={row.product_price}
             />
           ))}
 
@@ -60,17 +81,27 @@ function CartCard({ cartData }) {
             <td></td>
             <td>${subtotal}</td>
           </tr>
+          <tr></tr>
+          <tr></tr>
           <tr>
-            <td>Shipping:</td>
+            <td>Shipping To::</td>
             <td></td>
-            <td>Free Shipping</td>
-            <td>Shipping to: {currentUser.shippingAddress}</td>
+            <td>
+              Free Shipping! Shipping to:
+              {currentUser.shipping_address
+                ? currentUser.shipping_address
+                : null}
+            </td>
           </tr>
+          <tr></tr>
+          <tr></tr>
           <tr>
             <td>Tax:</td>
             <td></td>
             <td>${(subtotal * 0.08).toFixed(2)}</td>
           </tr>
+          <tr></tr>
+          <tr></tr>
           <tr>
             <td>Total:</td>
             <td></td>
@@ -91,56 +122,64 @@ function CartCard({ cartData }) {
 
         <div className="card">
           <h1 className="CartCard-title">Shopping Cart </h1>
-          <h5 className="CartCard-id">Cart Id: {cartId}</h5>
-          <h5 className="myAccount-orders-customerId">Customer Id: {userId}</h5>
-          <Table data={cartData} />
+          <h5 className="CartCard-userId">Customer Id: {user_id}</h5>
+          <Table data={carts} />
           <br></br>
           <br></br>
           <br></br>
         </div>
-        {/* <table id="CartCard-table">
-            <tbody>
-              <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-              </tr>
-              <tr className="CartCard-product">
-                <td>{productName}</td>
-                <td>{productQuantity}</td>
-                <td>${productPrice}</td>
-              </tr>
-              <tr></tr>
-              <tr></tr>
-              <tr>
-                <th>Cart totals</th>
-              </tr>
-              <tr></tr>
-              <tr></tr>
-              <tr>
-                <td>Subtotal:</td>
-                <td></td>
-                <td>${productPrice * productQuantity}</td>
-              </tr>
-              <tr></tr>
-              <tr></tr>
-              <tr>
-                <td>
-                  Free Shipping! Shipping to: {currentUser.shippingAddress}
-                </td>
-              </tr>
-              <tr></tr>
-              <tr></tr>
-              <tr>
-                <td> Tax: ${(subtotal * 0.08).toFixed(2)}</td>
-              </tr>
-              <tr></tr>
-              <tr></tr>
-              <tr>
-                <td> Total: ${(subtotal * 1.08).toFixed(2)}</td>
-              </tr>
-            </tbody>
-          </table> */}
+        {/*<table id="CartCard-table">
+          <tbody>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+            <tr className="CartCard-product">
+              <td>{product_name}</td>
+              <td>{product_quantity}</td>
+              <td>${product_price}</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <th>Cart totals</th>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <td>Subtotal:</td>
+              <td></td>
+              <td>${subtotal}</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <td>
+                Free Shipping! Shipping to:
+                {currentUser.shipping_address
+                  ? currentUser.shipping_address
+                  : null}
+              </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <td>
+                {" "}
+                Tax: ${(subtotal * 0.08).toFixed(2)}
+              </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <td>
+                {" "}
+                Total: ${(subtotal * 1.08).toFixed(2)}
+              </td>
+            </tr>
+          </tbody>
+        </table> */}
         <br></br>
         <br></br>
         <br></br>

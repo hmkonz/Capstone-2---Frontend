@@ -62,10 +62,15 @@ function Routes({ signup, login, adminSignin }) {
           <ProductDogOrCatFood />
         </Route>
 
-        {/* Route renders PrivateRoute and Cart components when path exactly matches "/api/cart" and user is logged in */}
-        <PrivateRoute path="/api/carts">
+        {/* Route renders PrivateRoute and Carts components when path exactly matches "/api/cart/:user_id" and user is logged in */}
+        <PrivateRoute path="/api/cart/:user_id">
           <Carts />
         </PrivateRoute>
+
+        {/* Route renders PrivateRoute and Cart components when path exactly matches "/api/cart/:userId" and user is logged in */}
+        {/* <PrivateRoute exact path="/api/cart">
+          <Carts />
+        </PrivateRoute> */}
 
         {/* Route renders PrivateRoute and MyAccount components when path exactly matches "/api/account" and user is logged in */}
         <PrivateRoute exact path="/api/account">
@@ -73,7 +78,7 @@ function Routes({ signup, login, adminSignin }) {
         </PrivateRoute>
 
         {/* Route renders PrivateRoute and Orders components when path exactly matches "/api/account/orders" and user is logged in */}
-        <PrivateRoute exact path="/api/account/orders">
+        <PrivateRoute exact path="/api/orders/:userId">
           <Orders />
         </PrivateRoute>
 

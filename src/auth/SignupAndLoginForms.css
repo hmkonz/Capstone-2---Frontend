@@ -11,7 +11,7 @@
 }
 
 .register-btn {
-    margin-left: 125px;
+    margin-left: 130px;
     margin-top: 20px;
     padding: 10px;
     background-color: black;
@@ -19,7 +19,7 @@
 }
 
 .login-btn {
-    margin-left: 125px;
+    margin-left: 200px;
     margin-top: 20px;
     padding: 10px;
     background-color: black;
@@ -36,7 +36,7 @@
 
 .login-header {
     color: black;
-    margin-left: 200px;
+    margin-left: 400px;
     margin-bottom: 15px;
     font-size: 35px;
     font-weight: lighter;
@@ -53,19 +53,24 @@
 }
 
 #login-email {
-    margin-left: 115px;
+    margin-left: 185px;
     margin-top: -25px; 
 }
 
 #login-password {
-    margin-left: 115px;
+    margin-left: 185px;
     margin-top: -25px; 
 }
 
 .login-label { 
     color: black;
     font-weight: 400;
+    margin-left: 75px;
 }
+
+.navbar-nav {
+    width: 1346px;
+  }
 
 
 /* div wrapped around register form  - displaying form on the left of the page*/

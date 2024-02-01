@@ -177,6 +177,8 @@ function App() {
     }
   }
 
+  console.log("This is currentUser in App", currentUser);
+
   // if piece of state 'infoLoaded' is false, render the LoadingSpinner component to show Loading ...
   if (!infoLoaded) return <LoadingSpinner />;
 
@@ -187,6 +189,7 @@ function App() {
         value={{ currentUser, setCurrentUser, currentAdmin, setCurrentAdmin }}
       >
         <div className="App">
+          {/* pass logout() method as a prop so can be used in NavBar component */}
           <NavBar logout={logout} />
           {/* pass login(), signup()and adminSignin methods as props so can be used in login and signup routes */}
           <Routes login={login} signup={signup} adminSignin={adminSignin} />

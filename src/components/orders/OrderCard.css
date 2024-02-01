@@ -31,7 +31,6 @@
   width: 1300px;
   text-align: center;
   padding: 20px;
-
 }
 
 .myAccount-orders-image {
@@ -281,19 +280,24 @@
 /* styles the message that appears when no orders have been made yet */
 .myAccount-orders-message2 {
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 300;
-  font-size: 20px;
-  margin-left: 500px;
+  font-weight: 600;
+  font-size: 25px;
+  margin-left: 530px;
   margin-top: 100px;
+  margin-bottom: 75px;
 }
 
 /* styles the Browse Products link on the page when no orders have been made yet */
 .myAccount-orders-browse-link {
-  margin-left: 560px;
-  text-decoration: underline;
+  margin-left: 585px;
+  text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 20px;
+  padding: 10px;
+  background-color: black;
+  color: lightgreen;
+
 }
 
 

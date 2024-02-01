@@ -6,6 +6,7 @@ import "./AccountDetailsCard.css";
 function AccountDetailsCard() {
   // initialize piece of 'state currentUser' to the value of context (defined in App component).context.value={ currentUser, setCurrentUser }
   const { currentUser } = useContext(UserContext);
+  console.log("THis is currentUser in AccountDetailsCard", currentUser);
 
   return (
     <div className="MyAccount-orders">
@@ -19,19 +20,36 @@ function AccountDetailsCard() {
 
         <div className="card">
           <h1 className="account-details-title">Billing Details</h1>
-          <h5 className="account-details-name">
-            Name: {currentUser.firstNameBilling} + {currentUser.lastNameBilling}
-          </h5>
-          <h5 className="account-details-address-billing">
-            Address: {currentUser.addressBilling}
-          </h5>
-          <h5 className="account-details-phone">Phone: {currentUser.phone}</h5>
+          {currentUser.first_name_billing ? (
+            <h5 className="account-details-name">
+              Name: {currentUser.first_name_billing}{" "}
+              {currentUser.last_name_billing}
+            </h5>
+          ) : (
+            <h5 className="account-details-name">Name: Not Found</h5>
+          )}
+          {currentUser.address_billing ? (
+            <h5 className="account-details-address-billing">
+              Address: {currentUser.address_billing}
+            </h5>
+          ) : (
+            <h5 className="account-details-address-billing">
+              Address: Not Found
+            </h5>
+          )}
+          {currentUser.address_billing ? (
+            <h5 className="account-details-phone">
+              Phone: {currentUser.phone}
+            </h5>
+          ) : (
+            <h5 className="account-details-phone">Phone: Not Found</h5>
+          )}
           <br></br>
           <br></br>
           <br></br>
         </div>
         <Link
-          className="account-details-to-form-link"
+          className="account-details-edit-link"
           to={`/api/account/details/form}`}
         >
           Edit Details
@@ -52,7 +70,7 @@ function AccountDetailsCard() {
             <Link
               className="myAccount-orders-link-orders"
               exact
-              to="/api/account/orders"
+              to={`/api/orders/${currentUser.id}`}
             >
               Orders
             </Link>

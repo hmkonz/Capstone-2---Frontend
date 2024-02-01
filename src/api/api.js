@@ -67,37 +67,45 @@ class JustRealFoodApi {
     return res.products;
   }
 
-  /** Create a cart  */
+  /** Add a new item to the cart  */
 
-  static async createCart(cart) {
+  static async addItemToCart(cart) {
     let res = await this.request(`api/cart`, cart, "post");
     return res.cart;
   }
 
-  /** Get all carts   */
-  // static async getAllCarts() {
-  //   let res = await this.request(`api/cart`);
-  //   return res.cart;
-  // }
+  /** Get carts for a user with 'user_id'   */
 
-  /** Update cart details */
+  static async getUserCarts(user_id) {
+    let res = await this.request(`api/cart/${user_id}`);
+    return res.carts;
+  }
 
-  // static async saveCartDetails(data) {
-  //   let res = await this.request(`api/cart`, data, "patch");
-  //   return res.cart;
-  // }
+  /** List all carts  */
 
-  /** Get orders   */
+  static async listCarts() {
+    let res = await this.request(`api/cart`);
+    return res.carts;
+  }
 
-  static async getUserOrders() {
-    let res = await this.request(`api/account/orders`);
+  /** Delete all the carts of a user with user_id */
+
+  static async removeUserCarts(user_id) {
+    let res = await this.request(`api/cart/${user_id}`);
+    return res.carts;
+  }
+
+  /** Get orders for a user with 'userId' */
+
+  static async getUserOrders(user_id) {
+    let res = await this.request(`api/orders/${user_id}`);
     return res.orders;
   }
 
   /** Get user order details */
 
-  // static async getOrderDetails(orderId) {
-  //   let res = await this.request(`api/orders/${orderId}`);
+  // static async getOrderDetails(order_id) {
+  //   let res = await this.request(`api/orders/${order_id}`);
   //   return res.order;
   // }
 

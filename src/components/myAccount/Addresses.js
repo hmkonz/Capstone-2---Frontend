@@ -57,7 +57,7 @@ function Addresses() {
             <Link
               className="myAccount-addresses-link-orders"
               exact
-              to="/api/account/orders"
+              to={`/api/orders/${currentUser.id}`}
             >
               Orders
             </Link>
