@@ -1,9 +1,11 @@
+
+/* Locates the images */
 .productDetail-image2 {
     margin-right: 25px;
     margin-left: 185px;
-    margin-right: 120px;
 }
 
+/* Styles the div around the background images */
 .product-images {
     list-style: none;
     display: flex;
@@ -12,31 +14,47 @@
     margin-top: 25px;
 }
 
+/* styles and locates the product name */
 .productDetail-name {
     color: black;
     text-align: center;
     font-size: 25px;
-    margin-bottom: 100px;
+    margin-bottom: 75px;
+    margin-left: 200px;
 }
 
+/* styles and locates the product price */
 .productDetail-price {
     font-size: 20px;
     margin-top: -70px;
-    margin-left: 645px;
+    margin-left: 675px;
     margin-bottom: -25px;
 }
 
-.productDetail-button {
+/* styles and locates the 'Add to Cart' button */
+.productDetail-add-button {
     background-color: black;
     color: white;
     padding: 5px;
     font-size: 15px;
-    margin-left: 900px;
+    margin-left: 850px;
     text-decoration: none;
-    width: 100px;  
-    margin-bottom: 20px;
+    width: 100px; 
+    margin-top: -10px; 
+    margin-bottom: 10px; 
 }
 
+/* Styles and locates the 'Return to Products Page' button */
+.ProductDetail-return-link {
+    background-color: black;
+    color: white;
+    padding: 7px;
+    font-size: 15px;
+    margin-left: 825px;
+    text-decoration: none;
+    width: 200px; 
+}
+/* 
 .addToCart-msg {
     background-color: black;
     padding: 20px;
@@ -46,16 +64,16 @@
     margin-bottom: 100px;
     width: 500px;
     text-align: center;
-}
+} */
 
-.shopping-link {
+/* .shopping-link {
     background-color: black;
     color: lightgreen;
     padding: 5px;
     font-size: 15px;
     margin-left: 600px;
     text-decoration: none;
-}
+} */
 
 
 

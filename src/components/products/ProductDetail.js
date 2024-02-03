@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import JustRealFoodApi from "../../api/api";
+import Carts from "../carts/Carts";
 import "./ProductDetail.css";
 import UserContext from "../../auth/UserContext";
 
@@ -16,7 +17,7 @@ function ProductDetail() {
   console.log("This is currentUser in ProductDetail.js", currentUser);
 
   // initialize piece of state "cart" to an empty array
-  const [cart, setCart] = useState([]);
+  const [carts, setCarts] = useState([]);
 
   // initialize piece of state "addToCartConfirmed" to false
   const [addToCartConfirmed, setAddToCartConfirmed] = useState(false);
@@ -61,6 +62,10 @@ function ProductDetail() {
         };
 
         setCartData(newCartData);
+        console.log(
+          "THis is newCartData in ProductDetail/getProductDetail",
+          newCartData
+        );
       })
       .catch((err) => {
         console.error(`Error in ProductDetail/getProduct: ${err}`);
@@ -69,6 +74,7 @@ function ProductDetail() {
 
   console.log("This is currentUser", currentUser);
   console.log("THis is product in ProductDetail/getProductDetail", product);
+
   console.log("THis is piece of state cartData in ProductDetail", cartData);
 
   // define counter and set it equal to zero
@@ -83,7 +89,7 @@ function ProductDetail() {
         user_id: currentUser.id,
         product_id: cartData.product_id,
       });
-      setCart(result);
+      setCarts(result);
       setAddToCartConfirmed(true);
       setShowButton(false);
       counter = counter++;
@@ -95,25 +101,39 @@ function ProductDetail() {
     }
   };
 
-  console.log("THis is piece of state cart in ProductDetail", cart);
+  console.log("THis is piece of state carts in ProductDetail", carts);
 
   return (
     <div className="productDetail-container">
       {addToCartConfirmed ? (
         <div className="productDetail-msg">
           <p className="addToCart-msg">Item added to cart!</p>
-          <Link className="shopping-link" exact to="/api/products">
+          <button onClick={() => setAddToCartConfirmed(true)}>
+            Show Cart Details
+          </button>
+          {addToCartConfirmed && <Carts carts={carts} />}
+          {/* <Link className="shopping-link" exact to="/api/products">
             Continue Shopping
-          </Link>
+          </Link> */}
         </div>
       ) : (
         <div>
           <div className="productDetail-div">
             <h1 className="productDetail-name">{product.name} Details</h1>
             <h5 className="productDetail-price">${product.price}</h5>
-            <button className="productDetail-button" onClick={addItemToCart}>
+            <button
+              className="productDetail-add-button"
+              onClick={addItemToCart}
+            >
               Add to Cart
             </button>
+            <Link
+              className="ProductDetail-return-link"
+              exact
+              to="/api/products"
+            >
+              Return to Products Page
+            </Link>
           </div>
           <div className="product-images">
             <img
@@ -127,6 +147,8 @@ function ProductDetail() {
               alt=""
             ></img>
           </div>
+          <br></br>
+          <br></br>
         </div>
       )}
     </div>
