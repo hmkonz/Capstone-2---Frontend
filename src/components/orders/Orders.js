@@ -23,35 +23,33 @@ function Orders() {
   const { currentUser } = useContext(UserContext);
   console.log("THis is currentUser in Orders.js", currentUser);
 
-  /** the listUserOrders function is executed once when component is rendered **/
-
-  // useEffect(() => {
-  //   async function listUserOrders() {
-  //     let result = await JustRealFoodApi.getUserOrders(currentUser.id);
-  //     console.log("This is result in Orders/listUserOrders", result);
-  //     return result;
-  //   }
-
-  //   listUserOrders()
-  //     .then((orderResult) => {
-  //       setOrders(orderResult);
-  //     })
-  //     .catch((err) => {
-  //       console.error(`Error in Orders/listUserOrders: ${err}`);
-  //     });
-  // }, [currentUser.id]);
-
-  async function listUserOrders() {
-    // retrieve products with category=products.DogFood or category=products.CatFoodfrom API
-    let result = await JustRealFoodApi.getUserOrders(currentUser.id);
-    // update piece of state 'products' with the results of the API call
-    setOrders(result);
-  }
-
-  // useEffect will make an API call once when component is rendered and whenever currentUser.id, and it retrieves all orders for that specific user from the database
   useEffect(() => {
-    listUserOrders();
+    async function listUserOrders() {
+      let result = await JustRealFoodApi.getUserOrders(currentUser.id);
+      console.log("This is result in Orders/listUserOrders", result);
+      return result;
+    }
+
+    listUserOrders()
+      .then((orderResult) => {
+        setOrders(orderResult);
+      })
+      .catch((err) => {
+        console.error(`Error in Orders/listUserOrders: ${err}`);
+      });
   }, [currentUser.id]);
+
+  // async function listUserOrders() {
+  //   // retrieve products with category=products.DogFood or category=products.CatFoodfrom API
+  //   let result = await JustRealFoodApi.getUserOrders(currentUser.id);
+  //   // update piece of state 'products' with the results of the API call
+  //   setOrders(result);
+  // }
+
+  // // useEffect will make an API call once when component is rendered and whenever currentUser.id, and it retrieves all orders for that specific user from the database
+  // useEffect(() => {
+  //   listUserOrders();
+  // }, [currentUser.id]);
 
   // while orders are being retrieved from the API, show the laoding spinner
   if (!orders) {
