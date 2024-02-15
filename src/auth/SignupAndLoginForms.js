@@ -88,7 +88,7 @@ function SignupAndLoginForms({ signup, login }) {
         <form onSubmit={handleRegisterSubmit}>
           <div>
             <label className="register-label" htmlFor="email">
-              Email*
+              Email
             </label>
             <input
               id="register-email"
@@ -102,7 +102,7 @@ function SignupAndLoginForms({ signup, login }) {
 
           <div>
             <label className="register-label" htmlFor="password">
-              Password*
+              Password
             </label>
             <input
               id="register-password"
@@ -115,7 +115,11 @@ function SignupAndLoginForms({ signup, login }) {
             />
           </div>
           {registerFormErrors.length ? (
-            <Alert type="danger" messages={registerFormErrors} />
+            <Alert
+              className="loginFormError"
+              type="danger"
+              messages={registerFormErrors}
+            />
           ) : null}
 
           <button className="register-btn">Register</button>
@@ -127,7 +131,7 @@ function SignupAndLoginForms({ signup, login }) {
         <form onSubmit={handleLoginSubmit}>
           <div>
             <label className="login-label" htmlFor="email">
-              Email*
+              Email
             </label>
             <input
               id="login-email"
@@ -140,7 +144,7 @@ function SignupAndLoginForms({ signup, login }) {
           </div>
           <div>
             <label className="login-label" htmlFor="password">
-              Password*
+              Password
             </label>
             <input
               id="login-password"
@@ -153,7 +157,11 @@ function SignupAndLoginForms({ signup, login }) {
             />
           </div>
           {loginFormErrors.length ? (
-            <Alert type="danger" messages={loginFormErrors} />
+            <Alert
+              className="loginFormError"
+              type="danger"
+              messages={loginFormErrors}
+            />
           ) : null}
 
           <button className="login-btn">Login</button>

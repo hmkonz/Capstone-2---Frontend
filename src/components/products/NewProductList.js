@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Row, Col } from "react-bootstrap";
 import JustRealFoodApi from "../../api/just_real_food_api";
-import Products from "./Products";
+import NewProducts from "./NewProducts";
 import LoadingSpinner from "../common/LoadingSpinner";
 
 /** Show page with list of products
@@ -12,9 +13,9 @@ import LoadingSpinner from "../common/LoadingSpinner";
  * ProductList renders -> { ProductCard }
  */
 
-function ProductList() {
+function NewProductList() {
   // initialize piece of state 'products' to an empty array
-  const [productArray, setProductArray] = useState([]);
+  const [products, setProducts] = useState([]);
 
   // useEffect will make an API call only once when component is rendered and retrieves all products from the database
   useEffect(function getAllProductsOnRender() {
@@ -26,32 +27,31 @@ function ProductList() {
     // retrieve products with name=product.name from API
     let products = await JustRealFoodApi.getAllProducts();
     // update piece of state 'products' with the results of the API call
-    setProductArray(products);
+    setProducts(products);
   }
   // while products are being retrieved from the API, show the laoding spinner
-  if (!productArray) {
+  if (!products) {
     return <LoadingSpinner />;
   }
-
-  console.log("THis is productArray in ProductList", productArray);
+  console.log(products);
   return (
-    <div className="productList col-md-8 offset-md-2">
-      <h1 className="productList-title"> All Dog and Cat Recipes</h1>
-      {productArray.length ? (
-        <div className="productList-list">
+    <>
+      <h1 align="center" className="ProductList-title">
+        All Dog and Cat Recipes
+      </h1>
+      {products.length ? (
+        <Row xs={1} md={3} className="g-4">
           {/* map over piece of state 'products' and for every product, render the ProductCard component with key, name, ingredients, calorieCount, category, price, imageUrl passed in as props  */}
-          {productArray.map((product) => (
-            <Products
-              key={product.id}
-              name={product.name}
-              imageUrl1={product.image_url1}
-            />
+          {products.map((product, idx) => (
+            <Col align="center" key={idx}>
+              <NewProducts product={product} />
+            </Col>
           ))}
-        </div>
+        </Row>
       ) : (
         <p className="lead">Sorry, no results were found!</p>
       )}
-    </div>
+    </>
   );
 }
-export default ProductList;
+export default NewProductList;

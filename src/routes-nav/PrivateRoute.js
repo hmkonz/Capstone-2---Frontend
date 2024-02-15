@@ -10,10 +10,10 @@ import UserContext from "../auth/UserContext";
 function PrivateRoute({ exact, path, children }) {
   // deconstruct 'currentUser' and 'currentAdmin' from context value of UserContext declared in App component
   // const { currentUser, currentAdmin } = useContext(UserContext);
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, isRequestCompleted } = useContext(UserContext);
 
-  // if there is no currentUser (user has not logged in), redirect to login page
-  if (!currentUser) {
+  // if there is no currentUser and getCurrentUser request has been completed, redirect to login page
+  if (!currentUser && isRequestCompleted) {
     return <Redirect to="/signup" />;
   }
   // if (!currentAdmin && (path = "/admin")) {

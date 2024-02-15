@@ -282,21 +282,20 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 25px;
-  margin-left: 530px;
-  margin-top: 100px;
-  margin-bottom: 75px;
+  margin-left: 265px;
+  margin-top: 200px;
+  margin-bottom: 50px;
 }
 
 /* styles the Browse Products link on the page when no orders have been made yet */
 .myAccount-orders-browse-link {
-  margin-left: 585px;
-  text-decoration: none;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 300;
+  margin-left: 335px;
+  font-weight: 500;
   font-size: 20px;
-  padding: 10px;
-  background-color: black;
-  color: lightgreen;
+  padding: 5px;
+  color: black;
+  text-decoration: underline;
+
 
 }
 

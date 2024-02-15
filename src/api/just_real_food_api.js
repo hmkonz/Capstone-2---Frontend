@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
-/** API Class.
+/** JustRealFood API Class.
  *
  * Static class tying together methods used to get/send to the API.
  * There shouldn't be any frontend-specific stuff here, and there shouldn't
@@ -15,7 +15,7 @@ class JustRealFoodApi {
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
-    //there are multiple ways to pass an authorization token, this is how you pass it in the header.
+    //pass the authorization token in the header
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JustRealFoodApi.token}` };
@@ -24,7 +24,7 @@ class JustRealFoodApi {
     try {
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
-      console.error("API Error:", err.response);
+      console.error("JustRealFood API Error:", err.response);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
     }
@@ -101,13 +101,6 @@ class JustRealFoodApi {
     let res = await this.request(`api/orders/${user_id}`);
     return res.orders;
   }
-
-  /** Get user order details */
-
-  // static async getOrderDetails(order_id) {
-  //   let res = await this.request(`api/orders/${order_id}`);
-  //   return res.order;
-  // }
 
   /** Signup for site */
 

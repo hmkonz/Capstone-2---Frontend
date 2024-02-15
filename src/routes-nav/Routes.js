@@ -6,9 +6,9 @@ import "./Routes.css";
 import Home from "../components/home/Home";
 import AdminSigninForm from "../auth/AdminSigninForm";
 import SignupAndLoginForms from "../auth/SignupAndLoginForms";
-import ProductList from "../components/products/ProductList";
+import NewProductList from "../components/products/NewProductList";
 import ProductDogOrCatFood from "../components/products/ProductDogOrCatFood";
-import ProductDetail from "../components/products/ProductDetail";
+import NewProductDetail from "../components/products/NewProductDetail";
 import Carts from "../components/carts/Carts";
 // import CartCard from "../components/carts/CartCard";
 import MyAccount from "../components/myAccount/MyAccount";
@@ -16,6 +16,8 @@ import Orders from "../components/orders/Orders";
 // import Addresses from "../components/myAccount/Addresses";
 import AccountDetailsForm from "../components/myAccount/AccountDetailsForm";
 import AccountDetailsCard from "../components/myAccount/AccountDetailsCard";
+import Cancel from "../components/Cancel";
+import Success from "../components/Success";
 import PrivateRoute from "./PrivateRoute";
 
 /** Site-wide routes.
@@ -49,12 +51,12 @@ function Routes({ signup, login, adminSignin }) {
 
         {/* Route renders ProductList component when path exactly matches "/api/products". User does not have to be logged in */}
         <Route exact path="/api/products">
-          <ProductList />
+          <NewProductList />
         </Route>
 
         {/* Route renders ProductDetail component when path exactly matches "/api/products/:name". User does not have to be logged in */}
         <Route exact path="/api/products/name/:name">
-          <ProductDetail />
+          <NewProductDetail />
         </Route>
 
         {/* Route renders ProductDogOrCatFood component when path exactly matches "/api/products/category/:category". User does not have to be logged in */}
@@ -62,15 +64,15 @@ function Routes({ signup, login, adminSignin }) {
           <ProductDogOrCatFood />
         </Route>
 
-        {/* Route renders PrivateRoute and Carts components when path exactly matches "/api/cart/:user_id" and user is logged in */}
-        <PrivateRoute path="/api/cart/:user_id">
-          <Carts />
+        {/* Route renders the Success component when the path exactly matches '/success (used by Stripe to show payment was a success) */}
+        <PrivateRoute exact path="/success">
+          <Success />
         </PrivateRoute>
 
-        {/* Route renders PrivateRoute and Cart components when path exactly matches "/api/cart/:userId" and user is logged in */}
-        {/* <PrivateRoute exact path="/api/cart">
-          <Carts />
-        </PrivateRoute> */}
+        {/* Route renders the Cancel component when the path exactly matches '/cancel (used by Stripe to show payment was cancelled)  */}
+        <PrivateRoute exact path="/cancel">
+          <Cancel />
+        </PrivateRoute>
 
         {/* Route renders PrivateRoute and MyAccount components when path exactly matches "/api/account" and user is logged in */}
         <PrivateRoute exact path="/api/account">
@@ -81,11 +83,6 @@ function Routes({ signup, login, adminSignin }) {
         <PrivateRoute exact path="/api/orders/:userId">
           <Orders />
         </PrivateRoute>
-
-        {/* Route renders PrivateRoute and Addresses components when path exactly matches "/api/account/edit-address" and user is logged in */}
-        {/* <PrivateRoute exact path="/api/account/edit-address">
-          <Addresses />
-        </PrivateRoute> */}
 
         {/* Route renders PrivateRoute and AccountDetails Form components when path exactly matches "/api/account/details" and user is logged in */}
         <PrivateRoute exact path="/api/account/details/form">

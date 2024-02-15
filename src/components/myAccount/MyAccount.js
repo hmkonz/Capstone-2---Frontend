@@ -8,12 +8,13 @@ function MyAccount() {
   console.log("THis is currentUser in MyAccount.js", currentUser);
 
   return (
-    <div className="MyAccount">
+    <div className="myAccount">
       <div className="myAccount-container">
         <img
           className="myAccount-image"
           src="/images/myAccountImage.jpg"
           alt=""
+          style={{ objectFit: "cover" }}
         ></img>
         <div className="myAccount-title">My Account</div>
         <p className="myAccount-welcome-msg">

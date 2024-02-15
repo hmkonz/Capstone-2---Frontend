@@ -1,6 +1,10 @@
 body {
   background-color: lightgreen;
-  max-width: 1200px;
+  max-width: 1195px;
+}
+
+.navbar {
+  width: 1350px;
 }
 
 /* spaces out links horizontally in navbar */
@@ -8,72 +12,69 @@ body {
   list-style: none;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 10px;
+  padding-left: 0px;
   padding-right: 10px;
-  display: flex;
   justify-content: space-around;
-  gap: 125px;
-  margin-left: -50px;
+  gap: 120px;
+  margin-left: -15px;
+  margin-right: -15px;
   margin-top: -17px;
   background-color: black;
-  width: 1328px;
 }
 
-/* spaces out links horizontally in navbar */
-/* .navbar-nav-lo {
-  list-style: none;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  gap: 160px;
-  margin-left: -40px;
-  margin-top: -17px;
-  background-color: black;
-  width: 1328px;
-} */
-
 /* styles links */
-.nav-link {
+.navbar-light .navbar-nav .active>.nav-link {
   text-decoration: none;
-  color: white;
+  color: lightgreen;
   font-weight: light;
   margin-left: 10px;
 }
 
 /* adds line under the link that's active */
 .nav-link.active {
-  color: white;
   border-bottom: 2px solid grey;
   padding-bottom: 4px;
 }  
  
 /* adds line under the link that's hovered over */
 .nav-link:hover {
-  color: white;
   border-bottom: 2px solid grey;
 } 
 
-.nav-cart {
-  margin-top: -20px;
-  display: flex;
-  align-items: center;
-  margin-left: -10px;
+.cart-in-navbar  {
+  background-color: lightgreen;
+  color: black;
+  margin-top: 5px;
+  padding:3px;
+  border: solid black;
 }
 
-.cart-quantity {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
+.cart-in-navbar:hover {
+  background-color: lightgreen;
+  border: solid black;
+  color: black
+}
+
+.cart-in-navbar:active {
+  background-color: lightgreen;
+  border: solid black;
+  color: black
+}
+
+.modal-login {
+  background-color: rgb(248, 248, 85);
   color: black;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  font-size: 14px;
-  font-weight: 700;
-  margin-left: 5px;
+
+}
+.navbar-msg {
+  font-size: 25px;
+  text-align: center;
+}
+
+.cart-checkout {
+  background-color: green;
+  color: white;
+  border: solid 2px green;
 }
 
 

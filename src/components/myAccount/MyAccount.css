@@ -1,26 +1,27 @@
+
 .myAccount-container {
   position: relative;
   text-align: center;
   color: black;
   font-size: 30px;
-  margin-left: -50px;
+  margin-left: -40px;
   margin-top: -20px;
   }
 
 .myAccount-image {
-  width: 1400px;
+  width: 1346px;
 }
 
 .myAccount-title {
     position: absolute;
-    top: 10%;
-    left: 58%;
+    top: 13%;
+    left: 59%;
     transform: translate(-50%, -50%);
     margin-top: -40px;
     background-color: lightgreen;
-    width: 1320px;
+    width: 225px;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
   }
 
 .myAccount-welcome-msg {
@@ -33,7 +34,7 @@
 
 /* positions dashboard links to the right of the page */
 .myAccount-dashboard-links {
-  margin-left: 800px;
+  margin-left: 790px;
   margin-top: -250px;
   font-size: 15px;
 }

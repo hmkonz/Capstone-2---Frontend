@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import { Link } from "react-router-dom";
-import JustRealFoodApi from "../../api/api";
+import JustRealFoodApi from "../../api/just_real_food_api";
 import OrderCard from "./OrderCard";
 import "./OrderCard.css";
 import UserContext from "../../auth/UserContext";
@@ -24,18 +24,24 @@ function Orders() {
   console.log("THis is currentUser in Orders.js", currentUser);
 
   /** the listUserOrders function is executed once when component is rendered **/
-  const listUserOrders = useCallback(async () => {
-    // retrieve orders of user
-    let userOrders = await JustRealFoodApi.getUserOrders(currentUser.id);
-    console.log("This is userOrders in Orders/listUserOrders", userOrders);
+  // const listUserOrders = useCallback(async () => {
+  //   // retrieve orders of user
+  //   let userOrders = await JustRealFoodApi.getUserOrders(currentUser.id);
+  //   console.log("This is userOrders in Orders/listUserOrders", userOrders);
 
-    // update piece of state 'orders' with the results of the API call
-    setOrders(orders);
-  }, [orders, currentUser.id]);
+  //   // update piece of state 'orders' with the results of the API call
+  //   setOrders(orders);
+  // }, [orders, currentUser.id]);
+
+  // useEffect(() => {
+  //   listUserOrders();
+  // }, [listUserOrders]);
 
   useEffect(() => {
-    listUserOrders();
-  }, [listUserOrders]);
+    JustRealFoodApi.getUserOrders(currentUser.id).then((order) => {
+      setOrders(order);
+    });
+  }, [orders, currentUser.id]);
 
   // while orders are being retrieved from the API, show the laoding spinner
   if (!orders) {

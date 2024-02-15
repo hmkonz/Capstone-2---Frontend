@@ -8,6 +8,7 @@
 .register-label {
     color: black;
     font-weight: 400;
+    margin-left: 20px;
 }
 
 .register-btn {
@@ -44,28 +45,28 @@
 
 #register-email {
     margin-left: 115px;
-    margin-top: -25px;
+    margin-top: -35px;
 }
 
 #register-password {
     margin-left: 115px; 
-    margin-top: -25px;  
+    margin-top: -35px;  
 }
 
 #login-email {
     margin-left: 185px;
-    margin-top: -25px; 
+    margin-top: -35px; 
 }
 
 #login-password {
     margin-left: 185px;
-    margin-top: -25px; 
+    margin-top: -35px; 
 }
 
 .login-label { 
     color: black;
     font-weight: 400;
-    margin-left: 75px;
+    margin-left: 100px;
 }
 
 .navbar-nav {
@@ -77,13 +78,14 @@
 .register {
     float: left;
     width: 50%;
+    margin-top: 150px;
 }
 
 /* div wrapped around login form - displaying form on the right of the page*/
 .login {
     float: right;
     width: 50%;
-    /* margin-right: 20px; */
+    margin-top: 150px;
 }
 
 form div {

@@ -1,23 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import JustRealFoodApi from "../../api/api";
+import JustRealFoodApi from "../../api/just_real_food_api";
 import Carts from "../carts/Carts";
 import "./ProductDetail.css";
-import UserContext from "../../auth/UserContext";
+import UserContext from "../auth/UserContext";
+import { CartContext } from "../context/CartContext";
 
 /** Show page with details of a specific product and items can be added to users cart */
 
 function ProductDetail() {
   // retrieve the parameter (name) from the URL
   const { name } = useParams();
-  console.log("THis is product name in useParmas ofProductDetail", name);
+  console.log("THis is product name in useParams in ProductDetail", name);
 
   // deconstruct 'currentUser' from context value of UserContext declared in App component
   const { currentUser } = useContext(UserContext);
   console.log("This is currentUser in ProductDetail.js", currentUser);
 
-  // initialize piece of state "cart" to an empty array
-  const [carts, setCarts] = useState([]);
+  // initialize piece of state "carts" to what's in CartContext
+  const [carts, setCarts] = useContext(CartContext);
+  console.log("This is carts in ProductDetail.js", carts);
 
   // initialize piece of state "addToCartConfirmed" to false
   const [addToCartConfirmed, setAddToCartConfirmed] = useState(false);
@@ -42,7 +44,7 @@ function ProductDetail() {
     product_id: "",
   });
 
-  // useEffect will make an API call everytime product name or currentUser.id changes in the params. Reloads the details of the product (with 'name'=product.name)
+  // useEffect will make an API call everytime product name, currentUser.id or carts changes. Reloads the details of the product (with 'name'=product.name)
 
   useEffect(() => {
     async function getProduct() {
@@ -70,15 +72,18 @@ function ProductDetail() {
       .catch((err) => {
         console.error(`Error in ProductDetail/getProduct: ${err}`);
       });
-  }, [name, currentUser.id]);
+  }, [name, currentUser.id, carts]);
 
   console.log("This is currentUser", currentUser);
   console.log("THis is product in ProductDetail/getProductDetail", product);
 
   console.log("THis is piece of state cartData in ProductDetail", cartData);
 
-  // define counter and set it equal to zero
-  let counter = 0;
+  // useEffect(() => {
+  //   localStorage.setItem("carts", carts);
+  // }, [carts]);
+
+  let isItemInCart = {};
 
   // function is called when click on "Add to Cart" button and addToCartConfirmed is toggled to 'true'
   const addItemToCart = async () => {
@@ -89,19 +94,22 @@ function ProductDetail() {
         user_id: currentUser.id,
         product_id: cartData.product_id,
       });
+
+      isItemInCart = carts.find(
+        (cart) => cart.product_name === cartData.product_name
+      );
+
       setCarts(result);
       setAddToCartConfirmed(true);
       setShowButton(false);
-      counter = counter++;
-
-      console.log("THis is result in ProductDetail/addItemToCart", result);
-      console.log("THis is counter in ProductDetail/addItemToCart", counter);
     } catch (errors) {
       console.error("Add item to cart failed", errors);
     }
   };
 
-  console.log("THis is piece of state carts in ProductDetail", carts);
+  const quantity = 0;
+  console.log("THis is carts in ProductDetail", carts);
+  console.log("THis is isItemInCart in ProductDetail", isItemInCart);
 
   return (
     <div className="productDetail-container">
@@ -111,22 +119,13 @@ function ProductDetail() {
           <button onClick={() => setAddToCartConfirmed(true)}>
             Show Cart Details
           </button>
-          {addToCartConfirmed && <Carts carts={carts} />}
-          {/* <Link className="shopping-link" exact to="/api/products">
-            Continue Shopping
-          </Link> */}
+          {addToCartConfirmed && <Carts />}
         </div>
       ) : (
         <div>
           <div className="productDetail-div">
             <h1 className="productDetail-name">{product.name} Details</h1>
             <h5 className="productDetail-price">${product.price}</h5>
-            <button
-              className="productDetail-add-button"
-              onClick={addItemToCart}
-            >
-              Add to Cart
-            </button>
             <Link
               className="ProductDetail-return-link"
               exact
@@ -134,6 +133,30 @@ function ProductDetail() {
             >
               Return to Products Page
             </Link>
+            <div className="productDetail-quantity">
+              {quantity === 0 ? (
+                <button
+                  className="productDetail-add-button"
+                  onClick={addItemToCart}
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <div className="productDetail-buttons">
+                  <div className="productDetail-plusMinus-buttons">
+                    <button>-</button>
+                    <div>
+                      <span>{quantity}</span> in cart
+                    </div>
+                    <button>+</button>
+                  </div>
+
+                  <button className="productDetail-remove-button">
+                    Remove
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
           <div className="product-images">
             <img

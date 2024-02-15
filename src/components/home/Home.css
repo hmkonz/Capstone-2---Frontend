@@ -1,6 +1,5 @@
 .homepage-container {
-   /* margin-left: 20px; */
-   margin-top: 20px;
+   margin-top: 40px;
 }
 
 .homepage-title {
@@ -8,10 +7,14 @@
     background-color: lightgreen;
     text-align: center;
     font-size: 35px;
-    margin-bottom: 20px;
-    margin-left: 100px;
-    width: 1085px;
-    padding: 20px;
+    margin-top: 75px;
+    width: 600px;
+    padding: 10px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: solid 2px  black;
 }
 
 .welcome-back-msg {

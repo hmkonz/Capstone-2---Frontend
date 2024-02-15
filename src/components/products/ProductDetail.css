@@ -14,45 +14,68 @@
     margin-top: 25px;
 }
 
+.productDetail-div {
+    margin-top: 50px;
+}
 /* styles and locates the product name */
 .productDetail-name {
     color: black;
     text-align: center;
     font-size: 25px;
     margin-bottom: 75px;
-    margin-left: 200px;
+    margin-left: -450px;
 }
 
 /* styles and locates the product price */
 .productDetail-price {
     font-size: 20px;
-    margin-top: -70px;
-    margin-left: 675px;
-    margin-bottom: -25px;
+    margin-top: -103px;
+    margin-left: 550px;
+    margin-bottom: -55px;
+    font-size: 20px;
 }
 
 /* styles and locates the 'Add to Cart' button */
 .productDetail-add-button {
     background-color: black;
-    color: white;
+    /* color: white; */
     padding: 5px;
     font-size: 15px;
-    margin-left: 850px;
+    margin-left: 750px;
     text-decoration: none;
-    width: 100px; 
-    margin-top: -10px; 
-    margin-bottom: 10px; 
+    /* width: 100px;  */
+    margin-top: 9px; 
+    margin-bottom: 0px; 
 }
 
+.productDetail-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: .5rem;
+    margin-top: 10px;
+    margin-left: 350px;
+}
+
+.productDetail-plusMinus-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.productDetail-remove-button {
+    background-color: black;
+    color: white;
+}
 /* Styles and locates the 'Return to Products Page' button */
 .ProductDetail-return-link {
     background-color: black;
     color: white;
-    padding: 7px;
-    font-size: 15px;
-    margin-left: 825px;
+    padding: 5px;
+    font-size: 12px;
+    margin-left: 960px;
     text-decoration: none;
-    width: 200px; 
 }
 /* 
 .addToCart-msg {

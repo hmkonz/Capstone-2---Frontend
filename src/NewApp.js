@@ -1,42 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NewNavBar from "./routes-nav/NewNavBar";
 import { BrowserRouter } from "react-router-dom";
-import useLocalStorage from "./hooks/useLocalStorage.js";
-import NewNavBar from "./routes-nav/NavBar.js";
-import Routes from "./routes-nav/Routes.js";
-import LoadingSpinner from "./components/common/LoadingSpinner.js";
-import JustRealFoodApi from "./api/just_real_food_api.js";
-import UserContext from "./auth/UserContext.js";
+import { Container } from "react-bootstrap";
+import Routes from "./routes-nav/Routes";
+import CartProvider from "./NewCartContext";
+
+import LoadingSpinner from "./components/common/LoadingSpinner";
+import JustRealFoodApi from "./api/just_real_food_api";
+import UserContext from "./auth/UserContext";
 import jwt from "jsonwebtoken";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 // Key name for storing token in localStorage to be remembered when re-login
 export const TOKEN_STORAGE_ID = "capstone2-token";
 
-/** Just Real Food application.
- *
- * - infoLoaded: has product or user/admin data been pulled from API?
- *   (this manages spinner for "loading...")
- *
- * - currentUser: user obj from API. This is the way to tell if someone
- *   is logged in. This is passed around via 'context' throughout app.
- *
- * - currentAdmin: admin obj from API. This is the way to tell if an admin
- *   is logged in. This is passed around via 'context' throughout app.
- *
- * - token: for logged in users and admins, this is their authentication JWT.
- *   Is required to be set for most API calls. This is initially read from
- *   localStorage and synced to there via the useLocalStorage hook.
- *
- * App -> Routes
- */
-
 function App() {
-  // set pieces of state to initial values
   const [infoLoaded, setInfoLoaded] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [currentAdmin, setCurrentAdmin] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
-
-  // const [carts, setCarts] = useState(localStorage.getItem("carts"));
+  const [isRequestCompleted, setIsRequestCompleted] = useState(false);
 
   /** Load user info from API. Until a user is logged in and they have a token,
    * this should not run. It only needs to re-run when a user logs out so
@@ -56,12 +40,11 @@ function App() {
             JustRealFoodApi.token = token;
             // assign 'currentUser' to the result of the API call to get the current user with 'email' assigned to the token passed in as a prop
             let currentUser = await JustRealFoodApi.getCurrentUser(email);
-            console.log(
-              "THis is currentUser in app.js/getCurrentUser",
-              currentUser
-            );
+
             // update piece of state 'currentUser' with the results of the API call
             setCurrentUser(currentUser);
+            setIsRequestCompleted(true);
+
             // if user does not have a token, show the error message and set piece of state 'currentUser' to null
           } catch (err) {
             console.error("App loadUserInfo: problem loading", err);
@@ -158,7 +141,6 @@ function App() {
       console.log("This is token in app.js/login", token);
       // update piece of state 'token' with the API response
       setToken(token);
-      // gives access to all the properties in NewCartContext (i.e. cart.items, cart.getProductQuantity(product.id), etc)
       return { success: true };
     } catch (errors) {
       console.error("login failed", errors);
@@ -185,25 +167,26 @@ function App() {
   if (!infoLoaded) return <LoadingSpinner />;
 
   console.log("This is currentUser in App", currentUser);
+
   return (
     <BrowserRouter>
-      {/* wrap UserContext.Provider around all routes (which includes their children) that need access to context value (value={{ currentUser, setCurrentUser, currentAdmin, setCurrentAdmin}}) */}
-
       <UserContext.Provider
         value={{
           currentUser,
           setCurrentUser,
+          isRequestCompleted,
           currentAdmin,
           setCurrentAdmin,
         }}
       >
+        {/* everything within CartProvider has access to CartContext (includes piece of state 'cartProducts' as well as the functions for getting, adding and subtracting product quantities, deleting products and getting total cart costs) */}
         <CartProvider>
-          <div className="App">
+          <Container>
             {/* pass logout() method as a prop so can be used in NavBar component */}
-            <NewNavBar logout={logout} login={login} />
+            <NewNavBar logout={logout} />
             {/* pass login(), signup()and adminSignin methods as props so can be used in login and signup routes */}
             <Routes login={login} signup={signup} adminSignin={adminSignin} />
-          </div>
+          </Container>
         </CartProvider>
       </UserContext.Provider>
     </BrowserRouter>

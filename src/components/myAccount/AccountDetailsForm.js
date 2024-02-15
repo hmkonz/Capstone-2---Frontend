@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import Alert from "../common/Alert";
-import JustRealFoodApi from "../../api/api";
+import JustRealFoodApi from "../../api/just_real_food_api";
 import UserContext from "../../auth/UserContext";
 import AccountDetailsCard from "./AccountDetailsCard";
 import { Link } from "react-router-dom";

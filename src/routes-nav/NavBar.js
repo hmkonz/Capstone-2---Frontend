@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav } from "reactstrap";
-
+import { CartContext } from "../components/context/CartContext";
 import UserContext from "../auth/UserContext";
 import "./NavBar.css";
 
@@ -9,20 +9,15 @@ import "./NavBar.css";
 function NavBar({ logout }) {
   // deconstruct 'currentUser' from context value of UserContext declared in App component
   const { currentUser, currentAdmin } = useContext(UserContext);
-  const [counter, setCounter] = useState([]);
+  // const [carts, setCarts] = useContext(CartContext);
+  const [carts, setCarts] = useState(localStorage.getItem("carts"));
 
   console.log("THis is currentUser in NavBar", currentUser);
   console.log("THis is currentAdmin in NavBar", currentAdmin);
 
-  // async function cartCounter() {
-  //   try {
-  //     let userCarts = await JustRealFoodApi.getUserCarts(currentUser.id);
-  //     console.log("THis is userCarts in App.js", userCarts);
-  //     setCounter(counter => [...counter, userCarts.length]);
-  //   } catch (errors) {
-  //     console.error("cartCounter failed", errors);
-  //   }
-  // }
+  useEffect(() => {
+    localStorage.setItem("carts", carts);
+  }, [carts]);
 
   function LoggedInUser() {
     return (
@@ -70,7 +65,7 @@ function NavBar({ logout }) {
               </svg>
               <span className="cart-title">Cart</span>
               <span className="cart-quantity">
-                <span>{counter}</span>
+                <span>{carts.length}</span>
               </span>
             </div>
           </NavLink>
@@ -125,7 +120,7 @@ function NavBar({ logout }) {
   }
 
   return (
-    <Nav className="navBar navbar-expand-md">
+    <Nav className="navbar navbar-expand-md">
       {currentUser ? <LoggedInUser /> : <LoggedOutUser />}
     </Nav>
   );
