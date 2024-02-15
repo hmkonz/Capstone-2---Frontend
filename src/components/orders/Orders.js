@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import JustRealFoodApi from "../../api/just_real_food_api";
 import OrderCard from "./OrderCard";
 import "./OrderCard.css";
 import UserContext from "../../auth/UserContext";
 import LoadingSpinner from "../common/LoadingSpinner";
+import JustRealFoodApi from "../../api/just_real_food_api";
 
 /** Show page with list of orders for a specific user
  *
@@ -24,24 +24,34 @@ function Orders() {
   console.log("THis is currentUser in Orders.js", currentUser);
 
   /** the listUserOrders function is executed once when component is rendered **/
-  // const listUserOrders = useCallback(async () => {
-  //   // retrieve orders of user
-  //   let userOrders = await JustRealFoodApi.getUserOrders(currentUser.id);
-  //   console.log("This is userOrders in Orders/listUserOrders", userOrders);
-
-  //   // update piece of state 'orders' with the results of the API call
-  //   setOrders(orders);
-  // }, [orders, currentUser.id]);
 
   // useEffect(() => {
-  //   listUserOrders();
-  // }, [listUserOrders]);
+  //   async function listUserOrders() {
+  //     let result = await JustRealFoodApi.getUserOrders(currentUser.id);
+  //     console.log("This is result in Orders/listUserOrders", result);
+  //     return result;
+  //   }
 
+  //   listUserOrders()
+  //     .then((orderResult) => {
+  //       setOrders(orderResult);
+  //     })
+  //     .catch((err) => {
+  //       console.error(`Error in Orders/listUserOrders: ${err}`);
+  //     });
+  // }, [currentUser.id]);
+
+  async function listUserOrders() {
+    // retrieve products with category=products.DogFood or category=products.CatFoodfrom API
+    let result = await JustRealFoodApi.getUserOrders(currentUser.id);
+    // update piece of state 'products' with the results of the API call
+    setOrders(result);
+  }
+
+  // useEffect will make an API call once when component is rendered and whenever currentUser.id, and it retrieves all orders for that specific user from the database
   useEffect(() => {
-    JustRealFoodApi.getUserOrders(currentUser.id).then((order) => {
-      setOrders(order);
-    });
-  }, [orders, currentUser.id]);
+    listUserOrders();
+  }, [currentUser.id]);
 
   // while orders are being retrieved from the API, show the laoding spinner
   if (!orders) {

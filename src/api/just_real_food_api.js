@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
+const BASE_URL = "http://localhost:3001";
 
 /** JustRealFood API Class.
  *
@@ -67,35 +67,14 @@ class JustRealFoodApi {
     return res.products;
   }
 
-  /** Add a new item to the cart  */
+  // /** Add a new item to the cart  */
 
-  static async addItemToCart(cart) {
-    let res = await this.request(`api/cart`, cart, "post");
-    return res.cart;
-  }
+  // static async addItemToCart(cart) {
+  //   let res = await this.request(`api/cart`, cart, "post");
+  //   return res.cart;
+  // }
 
-  /** Get carts for a user with 'user_id'   */
-
-  static async getUserCarts(user_id) {
-    let res = await this.request(`api/cart/${user_id}`);
-    return res.carts;
-  }
-
-  /** List all carts  */
-
-  static async listCarts() {
-    let res = await this.request(`api/cart`);
-    return res.carts;
-  }
-
-  /** Delete all the carts of a user with user_id */
-
-  static async removeUserCarts(user_id) {
-    let res = await this.request(`api/cart/${user_id}`);
-    return res.carts;
-  }
-
-  /** Get orders for a user with 'userId' */
+  /** Get the orders of a user with 'userId' */
 
   static async getUserOrders(user_id) {
     let res = await this.request(`api/orders/${user_id}`);

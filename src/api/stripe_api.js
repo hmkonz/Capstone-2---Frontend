@@ -38,13 +38,6 @@ class StripeApi {
     );
     return res.url;
   }
-
-  /** get the orders of a user with 'id' */
-
-  static async getUserOrders(userId) {
-    let res = await this.request(`api/orders/${userId}`);
-    return res.orders;
-  }
 }
 
 export default StripeApi;
