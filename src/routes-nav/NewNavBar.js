@@ -139,7 +139,6 @@ function NavbarComponent({ logout }) {
   }
 
   function LoggedOutUser() {
-    console.log("This is productsCount in LoggedOutUser", productsCount);
     return (
       <Navbar className="fixed-top" expand="sm">
         <>
