@@ -1,7 +1,7 @@
 /* positions the product card */
 div .card {
     margin-left: 225px;
-    margin-top: 60px;
+    margin-top: 55px;
 }
 
 .addToCart-btn {
@@ -32,7 +32,7 @@ div .card {
 .productDetails-cardTitle2 {
     margin-right: 200px;
     margin-bottom: 70px;
-    margin-top: -40px;
+    margin-top: 0px;
     padding: 5px;
     width: 400px;
     background-color: black;
@@ -149,7 +149,7 @@ div .card {
 
 .ProductDetail-return-link {
     position: absolute;
-    top: 10%;
+    top: 13%;
     left: 15%;
     transform: translate(-50%, -50%);
     color: black;

@@ -26,7 +26,6 @@ body {
 .navbar-light .navbar-nav .active>.nav-link {
   text-decoration: none;
   color: lightgreen;
-  font-weight: light;
   margin-left: 10px;
 }
 
@@ -39,6 +38,22 @@ body {
 /* adds line under the link that's hovered over */
 .nav-link:hover {
   border-bottom: 2px solid grey;
+} 
+
+/* styles the logout link */
+.logout-link {
+  text-decoration: none;
+  color: lightgreen;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* styles logout link when hovered over */
+.logout-link:hover {
+  text-decoration: none;
+  border-bottom: 2px solid grey;
+  color: lightgreen;
+  font-weight: light;
 } 
 
 .cart-in-navbar  {

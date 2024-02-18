@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Products.css";
+import "./NewProducts.css";
 
 /** ** Show page with either dogfood or catfood products
  *
@@ -10,9 +10,8 @@ import "./Products.css";
  *
  */
 
-function NewProducts(props) {
-  const product = props.product;
-
+// piece of state 'product' is passed in as a prop
+function NewProducts({ product }) {
   return (
     <div className="products">
       <Link className="products-link" to={`/api/products/name/${product.name}`}>

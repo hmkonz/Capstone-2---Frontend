@@ -17,7 +17,7 @@ function SignupAndLoginForms({ signup, login }) {
     password: "",
   });
 
-  // Initialize piece of state 'registerFormErrors' and 'loginFormErrors' to an empty array (error message if 'signup' function is not successful)
+  // Initialize piece of state 'registerFormErrors' and 'loginFormErrors' to empty arrays (error message if 'signup' function is not successful)
   const [registerFormErrors, setRegisterFormErrors] = useState([]);
   const [loginFormErrors, setLoginFormErrors] = useState([]);
 
@@ -26,7 +26,7 @@ function SignupAndLoginForms({ signup, login }) {
 
   /* update piece of state 'registerFormInputData' */
 
-  // execute this function whenever a user makes a change to any of the form inputs
+  // execute this function whenever a user makes a change to any of the Register Form inputs
   const handleRegisterChange = (event) => {
     // deconstruct name and value from event.target (inputs in form)
     const { name, value } = event.target;
@@ -39,7 +39,7 @@ function SignupAndLoginForms({ signup, login }) {
 
   /* update piece of state 'loginFormInputData' */
 
-  // execute this function whenever a user makes a change to any of the form inputs.
+  // execute this function whenever a user makes a change to any of the Login Form inputs.
   const handleLoginChange = (event) => {
     // deconstruct name and value from event.target (inputs in form)
     const { name, value } = event.target;
@@ -50,7 +50,7 @@ function SignupAndLoginForms({ signup, login }) {
     }));
   };
 
-  // when form is submitted, this function executes the 'signup' function (defined in the App component) and if property 'result.success' is true (if signup function was successful) then redirect to the homepage; otherwise update piece of state 'registerFormErrors' to result.errors
+  // when Register Form is submitted, this function executes the 'signup' function (defined in the NewApp component) and if property 'result.success' is true (if signup function was successful) then redirect to the homepage; otherwise update piece of state 'registerFormErrors' to result.errors
   async function handleRegisterSubmit(event) {
     event.preventDefault();
     // 'signup' function accepts piece of state 'registerFormInputData' and updates piece of state 'token' with what's returned from the backend route POST request `api/auth/user/register`
@@ -66,12 +66,13 @@ function SignupAndLoginForms({ signup, login }) {
     }
   }
 
+  // when Login Form is submitted, this function executes the 'login' function (defined in the NewApp component) and if property 'result.success' is true (if login function was successful) then redirect to the homepage; otherwise update piece of state 'registerFormErrors' to result.errors
   async function handleLoginSubmit(event) {
     event.preventDefault();
     // 'login' function accepts piece of state 'loginFormInputData' and updates piece of state 'token' with what's returned from the backend route POST request `api/auth/user/token`
     let result = await login(loginFormInputData);
 
-    // if login is successful, 'success' property, set to true, is returned from the 'signup' function and app redirects to homepage
+    // if login is successful, 'success' property, set to true, is returned from the 'login' function and app redirects to homepage
     if (result.success) {
       // redirect to homepage
       history.push("/");
@@ -157,11 +158,7 @@ function SignupAndLoginForms({ signup, login }) {
             />
           </div>
           {loginFormErrors.length ? (
-            <Alert
-              className="loginFormError"
-              type="danger"
-              messages={loginFormErrors}
-            />
+            <Alert type="danger" messages={loginFormErrors} />
           ) : null}
 
           <button className="login-btn">Login</button>

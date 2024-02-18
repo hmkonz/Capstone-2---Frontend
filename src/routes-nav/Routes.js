@@ -4,15 +4,10 @@ import "./Routes.css";
 
 // import components
 import Home from "../components/home/Home";
-import AdminSigninForm from "../auth/AdminSigninForm";
 import SignupAndLoginForms from "../auth/SignupAndLoginForms";
 import NewProductList from "../components/products/NewProductList";
 import ProductDogOrCatFood from "../components/products/ProductDogOrCatFood";
 import NewProductDetail from "../components/products/NewProductDetail";
-import MyAccount from "../components/myAccount/MyAccount";
-import Orders from "../components/orders/Orders";
-import AccountDetailsForm from "../components/myAccount/AccountDetailsForm";
-import AccountDetailsCard from "../components/myAccount/AccountDetailsCard";
 import Cancel from "../components/Cancel";
 import Success from "../components/Success";
 import PrivateRoute from "./PrivateRoute";
@@ -27,7 +22,7 @@ import PrivateRoute from "./PrivateRoute";
  * Visiting a non-existant route results in a friendly message asking user to click one of the links in the navBar
  */
 
-function Routes({ signup, login, adminSignin }) {
+function Routes({ signup, login }) {
   return (
     <div className="Routes">
       <Switch>
@@ -36,22 +31,17 @@ function Routes({ signup, login, adminSignin }) {
           <Home />
         </Route>
 
-        {/* Route renders SigninForm component when path exactly matches "/signup" */}
+        {/* Route renders SignupAndLoginForms component when path exactly matches "/signup" */}
         <Route exact path="/signup">
           <SignupAndLoginForms signup={signup} login={login} />
         </Route>
 
-        {/* Route renders AdminSigninForm component when path exactly matches "/admin" (with 'adminSignin()' defined in App component passed in as a prop) */}
-        <Route exact path="/api/auth/admin">
-          <AdminSigninForm adminSignin={adminSignin} />
-        </Route>
-
-        {/* Route renders ProductList component when path exactly matches "/api/products". User does not have to be logged in */}
+        {/* Route renders NewProductList component when path exactly matches "/api/products". User does not have to be logged in */}
         <Route exact path="/api/products">
           <NewProductList />
         </Route>
 
-        {/* Route renders ProductDetail component when path exactly matches "/api/products/:name". User does not have to be logged in */}
+        {/* Route renders NewProductDetail component when path exactly matches "/api/products/:name". User does not have to be logged in */}
         <Route exact path="/api/products/name/:name">
           <NewProductDetail />
         </Route>
@@ -61,37 +51,17 @@ function Routes({ signup, login, adminSignin }) {
           <ProductDogOrCatFood />
         </Route>
 
-        {/* Route renders the Success component when the path exactly matches '/success (used by Stripe to show payment was a success) */}
+        {/* Route renders the Success component when the path exactly matches '/success (used by Stripe to show payment was a success). User must be logged in. */}
         <PrivateRoute exact path="/success">
           <Success />
         </PrivateRoute>
 
-        {/* Route renders the Cancel component when the path exactly matches '/cancel (used by Stripe to show payment was cancelled)  */}
+        {/* Route renders the Cancel component when the path exactly matches '/cancel (used by Stripe to show payment was cancelled). User must be logged in.  */}
         <PrivateRoute exact path="/cancel">
           <Cancel />
         </PrivateRoute>
 
-        {/* Route renders PrivateRoute and MyAccount components when path exactly matches "/api/account" and user is logged in */}
-        <PrivateRoute exact path="/api/account">
-          <MyAccount />
-        </PrivateRoute>
-
-        {/* Route renders PrivateRoute and Orders components when path exactly matches "/api/account/orders" and user is logged in */}
-        <PrivateRoute exact path="/api/orders/:userId">
-          <Orders />
-        </PrivateRoute>
-
-        {/* Route renders PrivateRoute and AccountDetails Form components when path exactly matches "/api/account/details" and user is logged in */}
-        <PrivateRoute exact path="/api/account/details/form">
-          <AccountDetailsForm />
-        </PrivateRoute>
-
-        {/* Route renders PrivateRoute and AccountDetailsCard components when path exactly matches "/api/account/details" and user is logged in */}
-        <PrivateRoute exact path="/api/account/details">
-          <AccountDetailsCard />
-        </PrivateRoute>
-
-        {/* if a user tries to go to a link that doesn’t work, this friendly message will show up */}
+        {/* if a user tries to go to a link isn't one of the above, this friendly message will show up */}
         <Route>
           <div>
             <p className="errorHandler1">

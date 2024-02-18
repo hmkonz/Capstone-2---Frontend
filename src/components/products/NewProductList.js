@@ -4,13 +4,13 @@ import JustRealFoodApi from "../../api/just_real_food_api";
 import NewProducts from "./NewProducts";
 import LoadingSpinner from "../common/LoadingSpinner";
 
-/** Show page with list of products
+/** Show page with list of all products
  *
- * On mount, loads products from API.
+ * On mount, loads all products from API.
  *
  * This is routed to at /api/products
  *
- * ProductList renders -> { ProductCard }
+ * NewProductList renders -> { NewProducts }
  */
 
 function NewProductList() {
@@ -19,12 +19,13 @@ function NewProductList() {
 
   // useEffect will make an API call only once when component is rendered and retrieves all products from the database
   useEffect(function getAllProductsOnRender() {
+    // call the listAll function below when component is rendered
     listAll();
   }, []);
 
   /** the listAll function is executed once when component is rendered **/
   async function listAll() {
-    // retrieve products with name=product.name from API
+    // retrieve all products from the API
     let products = await JustRealFoodApi.getAllProducts();
     // update piece of state 'products' with the results of the API call
     setProducts(products);
@@ -33,15 +34,16 @@ function NewProductList() {
   if (!products) {
     return <LoadingSpinner />;
   }
-  console.log(products);
+
   return (
     <>
       <h1 align="center" className="ProductList-title">
         All Dog and Cat Recipes
       </h1>
+      {/* if products are retrieved from the database, create a row and in each row create a column with a product name and image (when NewProducts is rendered) for product in products*/}
       {products.length ? (
         <Row xs={1} md={3} className="g-4">
-          {/* map over piece of state 'products' and for every product, render the ProductCard component with key, name, ingredients, calorieCount, category, price, imageUrl passed in as props  */}
+          {/* map over piece of state 'products' and for every product, create a column and render the NewProducts component with piece of state {product} passed in as a prop  */}
           {products.map((product, idx) => (
             <Col align="center" key={idx}>
               <NewProducts product={product} />
