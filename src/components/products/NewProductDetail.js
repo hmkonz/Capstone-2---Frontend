@@ -176,7 +176,7 @@ function NewProductDetail() {
             )}
           </>
         )}
-        <Link className="ProductDetail-return-link" exact to="/api/products">
+        <Link className="ProductDetail-return-link" to="/api/products">
           Return to All Products Page
         </Link>
       </Card.Body>
