@@ -37,10 +37,10 @@ function NavbarComponent({ logout }) {
   const checkout = async () => {
     // pass cart.items and currentUser in as the body of the request
     let sessionUrl = await StripeApi.checkout(cart.items, currentUser);
+    console.log("THis is sessionUrl", sessionUrl);
 
     // redirect the user to the Stripe payment page
     window.location.assign(sessionUrl);
-    // window.open(sessionUrl);
   };
 
   // .reduce(sum, product) gives access to all the product quantities in cart.items and adds them one at a time to 'sum' (initialized to 0), returning the total sum. (i.e. cart.items=[{id:1, name: Beef & Salmon, price: 98.49, quantity:2}, {id:4, name: Bison, price: 98.49, quantity:1}, ...])

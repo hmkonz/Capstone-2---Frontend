@@ -41,9 +41,18 @@ div .card {
 }
 
 .productDetails-price {
+    margin-right: 325px;
+    margin-bottom: 0px;
+    margin-top: -40px;
+    width: 100px;
+    font-weight: 600;
+}
+
+.productDetails-price2 {
     margin-left: 325px;
     margin-bottom: -10px;
     width: 100px;
+    font-weight: 600;
 }
 
 /* styles number of cart items */

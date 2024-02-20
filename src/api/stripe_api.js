@@ -31,6 +31,7 @@ class StripeApi {
       { items, userId },
       "post"
     );
+    console.log("This is res.url in stripe_api", res.url);
     return res.url;
   }
 }

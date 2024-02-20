@@ -68,7 +68,7 @@ function NewProductDetail() {
                 >
                   {product.name} {product.category} Details
                 </Card.Title>
-                <Card.Text className="productDetails-price" align="center">
+                <Card.Text className="productDetails-price2" align="center">
                   ${product.price}
                 </Card.Text>
                 {/* add + and - and remove buttons for adjusting the quantity of the product in the cart */}
@@ -129,6 +129,9 @@ function NewProductDetail() {
             <Card.Title className="productDetails-cardTitle2" align="center">
               {product.name} {product.category} Details
             </Card.Title>
+            <Card.Text className="productDetails-price" align="center">
+              ${product.price}
+            </Card.Text>
 
             {/* if there is are 2 images to show (dog foods):*/}
             {product.image_url3 ? (
@@ -155,6 +158,9 @@ function NewProductDetail() {
             <Card.Title className="productDetails-cardTitle2" align="center">
               {product.name} {product.category} Details
             </Card.Title>
+            <Card.Text className="productDetails-price" align="center">
+              ${product.price}
+            </Card.Text>
 
             {/* if there is are 2 images to show (dog foods):*/}
             {product.image_url3 ? (
